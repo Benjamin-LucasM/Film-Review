@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ReelPick</title>
+  <link rel="stylesheet" href="{% static 'movies/css/style.css' %}">
+</head>
+<body>
+  <div class="background"></div>
+  <header>
+    <h1>ReelPick</h1>
+  </header>
+  {% if movies %}
+    <ul>
+      {% for movie in movies %}
+        <li>{{ movie.title }} ({{ movie.year }}) – {{ movie.rating }}/10</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No movies yet.</p>
+  {% endif %}
+</body>
+</html>
