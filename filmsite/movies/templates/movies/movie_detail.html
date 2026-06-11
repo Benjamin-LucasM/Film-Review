@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ movie.title }} - ReelPick</title>
+  <link rel="stylesheet" href="{% static 'movies/css/style.css' %}">
+</head>
+<body>
+  <div class="background"></div>
+
+  <header>
+    <a href="{% url 'movies:list' %}" class="login-btn">← Back</a>
+    <h1>{{ movie.title }}</h1>
+    {% if user.is_authenticated %}
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="login-btn">Log out</button>
+      </form>
+    {% else %}
+      <a href="{% url 'login' %}"><button class="login-btn">Log in</button></a>
+    {% endif %}
+  </header>
+
+  <div class="detail-container">
+    <p>{{ movie.year }} · {{ movie.genre }} · {{ movie.director }}</p>
+    <p>{{ movie.description }}</p>
+
+    <h2>Reviews</h2>
+    {% for review in reviews %}
+      <div class="review-card">
+        <p><strong>{{ review.user.username }}</strong></p>
+        <p>{{ review.text }}</p>
+      </div>
+    {% empty %}
+      <p>No reviews yet. Be the first!</p>
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+      <h2>Write a review</h2>
+      <form method="post" class="review-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="login-btn">Submit</button>
+      </form>
+    {% else %}
+      <p><a href="{% url 'login' %}" style="color:#dd1313;">Log in</a> to write a review.</p>
+    {% endif %}
+  </div>
+
+</body>
+</html>

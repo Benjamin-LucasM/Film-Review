@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign up - ReelPick</title>
+  <link rel="stylesheet" href="{% static 'regristration/css/style.css' %}">
+</head>
+<body>
+  <div class="background"></div>
+  <div class="login-container">
+    <h2>Sign up</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="login-btn">Create account</button>
+    </form>
+    <p style="text-align:center; margin-top:1rem;">
+      Already have an account? <a href="{% url 'login' %}" style="color:#ff0000;">Log in</a>
+    </p>
+  </div>
+</body>
+</html>

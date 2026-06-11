@@ -11,14 +11,36 @@
 <body>
   <div class="background"></div>
   <header>
-    <h1>ReelPick</h1>
+    {% if user.is_superuser %}
+        <a href="{% url 'movies:add_movie' %}"><button class="login-btn">+ Add Movie</button></a>
+    {% else %}
+        <h1></h1>
+    {% endif %}
+    <h1>ReelPick - {{ user.username }}</h1>
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="login-btn">Log out</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}"><button class="login-btn">Log in</button></a>
+    {% endif %}
   </header>
   {% if movies %}
-    <ul>
-      {% for movie in movies %}
-        <li>{{ movie.title }} ({{ movie.year }}) – {{ movie.rating }}/10</li>
-      {% endfor %}
-    </ul>
+    <div class="movie-grid">
+        {% for movie in movies %}
+            <a href="{% url 'movies:detail' movie.pk %}" class="movie-card">
+                <div class="card-body">
+                    <h2>{{ movie.title }}</h2>
+                    <p>{{ movie.year }}</p>
+                    <p>{{ movie.genre }}</p>
+                    <p>Director - {{ movie.director }}</p>
+                </div>
+            </a>
+        {% empty %}
+            <p>No movies yet.</p>
+        {% endfor %}
+    </div>
   {% else %}
     <p>No movies yet.</p>
   {% endif %}

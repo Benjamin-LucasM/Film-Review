@@ -12,7 +12,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../Background.png');
+    background-image: url('../../img/Background.png');
     background-size: cover;
     background-position: top center;
     z-index: -1;
@@ -20,10 +20,92 @@ body {
 
 header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     border: 2px solid #dd1313;
     border-radius: 10px;
     box-shadow: 0 0 20px #8e2d2d;
     background-color: rgb(15, 15, 15);
     margin: 2rem;
+    padding: 1rem;
+}
+
+.login-btn {
+    background: transparent;
+    border-radius: 8px;
+    color: #fff;
+    padding: 0.4rem 1.2rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.login-btn:hover {
+    background: #630000;
+}
+
+.detail-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    border: 2px solid #dd1313;
+    box-shadow: 0 0 20px #8e2d2d;
+}
+
+.review-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #dd1313;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.review-form input, .review-form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    background: #1a1a1a;
+    border: 1px solid #dd1313;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 1rem;
+    margin-top: 0.3rem;
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.movie-card {
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #dd1313;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #8e2d2d;
+    text-decoration: none;
+    color: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px #dd1313;
+}
+
+.card-body {
+    padding: 1rem;
+}
+
+.card-body h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-body p {
+    font-size: 0.85rem;
+    color: #aaa;
 }
