@@ -32,6 +32,12 @@
       <div class="review-card">
         <p><strong>{{ review.user.username }}</strong></p>
         <p>{{ review.get_decrypted_text }}</p>
+        {% if user.is_superuser %}
+          <form method="post" action="{% url 'movies:delete_review' review.pk %}">
+            {% csrf_token %}
+            <button type="submit" class="login-btn" style="background:#630000;">Delete</button>
+          </form>
+        {% endif %}
       </div>
     {% empty %}
       <p>No reviews yet. Be the first!</p>

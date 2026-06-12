@@ -79,6 +79,14 @@ def add_movie(request):
         form = MovieForm()
     return render(request, 'movies/add_movie.html', {'form': form})
 
+@login_required
+def delete_review(request, pk):
+    review = get_object_or_404(Review, pk=pk)
+    if request.user.is_superuser:
+        log(request, f"Review deleted by admin: review id {pk}")
+        review.delete()
+    return redirect('movies:detail', pk=review.movie.pk)
+
 def signup(request):
     if request.method == 'POST':
         form = SimpleSignupForm(request.POST)
