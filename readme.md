@@ -34,7 +34,7 @@ pip install -r requirements.txt
 3. Getting your cryptation key
     - python3 -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
     - `touch .env`
-    - `cat .env`
+    - `nano .env`
     - write "FERNET_KEY = <key>
 
 4. Run migrations and create a super user
