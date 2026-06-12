@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -31,6 +29,11 @@
     <div class="movie-grid">
         {% for movie in movies %}
             <a href="{% url 'movies:detail' movie.pk %}" class="movie-card">
+                {% if movie.poster %}
+                    <img src="{{ movie.poster.url }}" alt="{{ movie.title }}" class="card-img" style="max-width:200px; max-height:300px;">
+                {% else %}
+                    <p></p>
+                {% endif %}
                 <div class="card-body">
                     <h2>{{ movie.title }}</h2>
                     <p>{{ movie.year }}</p>

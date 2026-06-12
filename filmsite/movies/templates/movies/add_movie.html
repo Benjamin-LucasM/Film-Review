@@ -11,9 +11,10 @@
     <div class="detail-container">
       <h2>Add Movie</h2>
       <a href="{% url 'movies:list' %}" class="login-btn">← Back</a>
-      <form method="post" class="review-form">
-        {% csrf_token %} {{ form.as_p }}
-        <button type="submit" class="login-btn">Save</button>
+      <form method="post" enctype="multipart/form-data" class="review-form"> <!--ny-->
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="login-btn">Save</button>
       </form>
     </div>
   </body>

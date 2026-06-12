@@ -56,14 +56,14 @@ def movie_detail(request, pk):
 class MovieForm(forms.ModelForm):
     class Meta:
         model = Movie
-        fields = ['title', 'genre', 'year', 'director', 'description']
+        fields = ['title', 'genre', 'year', 'director', 'description', 'poster']
 
 @login_required
 def add_movie(request):
     if not request.user.is_superuser:
         return redirect('/')
     if request.method == 'POST':
-        form = MovieForm(request.POST)
+        form = MovieForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('/')
