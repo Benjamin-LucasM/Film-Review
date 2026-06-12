@@ -4,6 +4,12 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
+
+def log(request, message):
+    ip = request.META.get('REMOTE_ADDR')
+    with open("log.txt", "a") as file:
+        file.write(f"{datetime.now()} - {ip} - {message}\n")
 
 def movie_list(request):
     movies = Movie.objects.all()
@@ -45,6 +51,7 @@ def movie_detail(request, pk):
             review.movie = movie
             review.user = request.user
             review.save()
+            log(request, f"review added from {request.user.username} on {pk}")
             return redirect('movies:detail', pk=pk)
 
     return render(request, 'movies/movie_detail.html', {
@@ -66,6 +73,7 @@ def add_movie(request):
         form = MovieForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            log(request, f"Movie added: {request.POST.get('title')} by {request.user.username}")
             return redirect('/')
     else:
         form = MovieForm()
@@ -77,6 +85,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
+            log(request, f"new user: {user.username}")
             return redirect('/')
     else:
         form = SimpleSignupForm()
