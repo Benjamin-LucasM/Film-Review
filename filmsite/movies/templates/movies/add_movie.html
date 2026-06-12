@@ -1,21 +1,20 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Add Movie - ReelPick</title>
-  <link rel="stylesheet" href="{% static 'movies/css/style.css' %}">
-</head>
-<body>
-  <div class="background"></div>
-  <div class="detail-container">
-    <h2>Add Movie</h2>
-    <a href="{% url 'movies:list' %}" class="login-btn">← Back</a>
-    <form method="post" class="review-form">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" class="login-btn">Save</button>
-    </form>
-  </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add Movie - ReelPick</title>
+    <link rel="stylesheet" href="{% static 'movies/css/style.css' %}" />
+  </head>
+  <body>
+    <div class="background"></div>
+    <div class="detail-container">
+      <h2>Add Movie</h2>
+      <a href="{% url 'movies:list' %}" class="login-btn">← Back</a>
+      <form method="post" class="review-form">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit" class="login-btn">Save</button>
+      </form>
+    </div>
+  </body>
 </html>
